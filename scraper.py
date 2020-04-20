@@ -9,8 +9,9 @@ import sys
 GOOD_STRING = '\033[92m✔\033[0m'
 BAD_STRING = '\033[92m❌\033[0m'
 
-# driver = webdriver.Chrome('C:/CLI/chromedriver.exe')
-# actions = ActionChains(driver)
+def exit_scraper(exit_text):
+    driver.quit()
+    exit(exit_text)
 
 print('What would you like to scape? Please start with a "@" for profile and a "#" for a tag')
 to_scrape = input()
@@ -33,4 +34,4 @@ driver.get(scrape_url)
 print(f'{GOOD_STRING} Started scraper for {to_scrape}..')
 
 if len(driver.find_elements_by_xpath("//*[contains(text(), 'This Account is Private')]")) != 0:
-    exit(f'{BAD_STRING} ACCOUNT IS PRIVATE CAN\'T SCRAPE')
+    exit_scraper(f'{BAD_STRING} ACCOUNT IS PRIVATE CAN\'T SCRAPE')
